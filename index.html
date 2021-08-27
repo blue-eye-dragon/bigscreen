@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <title>大屏数据可视化</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div class="header">
+      <h1 class="header-title">
+        <img src="./img/坚式3.png" alt="" class="headerImg">
+        智慧养老云平台
+      </h1>
+    </div>
+    <div class="wrapper">
+      <div class="backImg1"></div>
+      <div class="backImg2"></div>
+      <div class="content">
+        <div class="col col-l">
+          <div class="xpanel-wrapper xpanel-wrapper-45">
+            <div class="xpanel xpanel-l-t">
+              <div class="title">老人年龄分布</div>
+              <div id="ageDistribution" class="ageDistribution"></div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-55">
+            <div class="xpanel xpanel-l-b">
+              <div class="title">服务数据</div>
+              <div id="service" class="service"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-c">
+          <div class="xpanel-wrapper xpanel-wrapper-65">
+            <div class="xpanel no-bg" id="flyMap">
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-35">
+            <div class="xpanel xpanel-c-b">
+              <div class="title title-long">
+                工单数据
+                <select class="selectYear" value="2021">
+                  <option v-for="(item,index) in yearList" 
+                          :key="index"
+                          class="optionYear"
+                          :selected="item.value === '2021'"
+                          :value="item.value">{{item.label}}</option>
+                </select>
+              </div>
+              <div id="workInstruction" class="workInstruction"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-r">
+          <div class="xpanel-wrapper xpanel-wrapper-25">
+            <div class="xpanel xpanel-r-t">
+              <div class="title">老人人数</div>
+              <div class="peopleNum">
+                <table class="data-t">
+                  <tr>
+                    <th><img src="img/icon-05.png" /></th>
+                    <td>
+                      <p><span>78920</span></p>
+                      <p>老人总人数</p>
+                    </td>
+                    <th><img src="img/icon-06.png" /></th>
+                    <td>
+                      <p><span>45%</span>--<span>55%</span></p>
+                      <p>男女比例</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-25">
+            <div class="xpanel xpanel-r-m">
+              <div class="title">服务人员数据</div>
+              <div class="peopleNum">
+                <table class="data-t">
+                  <tr>
+                    <th><img src="img/icon-01.png" /></th>
+                    <td>
+                      <p><span>78920</span></p>
+                      <p>服务总人数</p>
+                    </td>
+                    <th><img src="img/icon-02.png" /></th>
+                    <td>
+                      <p><span>5000</span></p>
+                      <p>空闲服务人数</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-50">
+            <div class="xpanel xpanel-r-b">
+              <div class="title">设备数据</div>
+              <div id="equipment" class="equipment"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/echarts-5.1.2.min.js"></script>
+  <script type="text/javascript" src="js/echarts-map-china.js"></script>
+  <script type="text/javascript" src="js/initecharts.js"></script>
+  <script type="text/javascript" src="js/vue-2.6.4.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          yearList: [
+            {
+              label: '2015年',
+              value: '2015'
+            },
+            {
+              label: '2016年',
+              value: '2016'
+            },
+            {
+              label: '2017年',
+              value: '2017'
+            },
+            {
+              label: '2018年',
+              value: '2018'
+            },
+            {
+              label: '2019年',
+              value: '2019'
+            },
+            {
+              label: '2020年',
+              value: '2020'
+            },
+            {
+              label: '2021年',
+              value: '2021'
+            }
+          ]
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
