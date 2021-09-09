@@ -12,21 +12,28 @@
 
 <body>
   <div id="app">
-    <div class="header">
+    <div id="demo1">
+      <div class="header">
       <h1 class="header-title">
         <img src="./img/坚式3.png" alt="" class="headerImg">
         智慧养老云平台
       </h1>
-    </div>
-    <div class="wrapper">
-      <div class="backImg1"></div>
-      <div class="backImg2"></div>
+      </div>
+      <div class="wrapper">
       <div class="content">
         <div class="col col-l">
           <div class="xpanel-wrapper xpanel-wrapper-45">
             <div class="xpanel xpanel-l-t">
-              <div class="title">老人年龄分布</div>
-              <div id="ageDistribution" class="ageDistribution"></div>
+              <div class="title">活动室使用
+                <select class="selectYear" value="2021">
+                  <option v-for="(item,index) in yearList" 
+                          :key="index"
+                          class="optionYear"
+                          :selected="item.value === '2021'"
+                          :value="item.value">{{item.label}}</option>
+                </select>
+              </div>
+              <div id="playroom" class="playroom"></div>
             </div>
           </div>
           <div class="xpanel-wrapper xpanel-wrapper-55">
@@ -58,55 +65,241 @@
           </div>
         </div>
         <div class="col col-r">
-          <div class="xpanel-wrapper xpanel-wrapper-25">
+          <div class="xpanel-wrapper xpanel-wrapper-45">
             <div class="xpanel xpanel-r-t">
-              <div class="title">老人人数</div>
+              <div class="title">入住情况</div>
+              <div id="checkIn" class="checkIn"></div>
               <div class="peopleNum">
                 <table class="data-t">
-                  <tr>
-                    <th><img src="img/icon-05.png" /></th>
-                    <td>
-                      <p><span>78920</span></p>
-                      <p>老人总人数</p>
-                    </td>
-                    <th><img src="img/icon-06.png" /></th>
-                    <td>
-                      <p><span>45%</span>--<span>55%</span></p>
-                      <p>男女比例</p>
-                    </td>
-                  </tr>
                 </table>
               </div>
             </div>
           </div>
-          <div class="xpanel-wrapper xpanel-wrapper-25">
-            <div class="xpanel xpanel-r-m">
-              <div class="title">服务人员数据</div>
-              <div class="peopleNum">
-                <table class="data-t">
-                  <tr>
-                    <th><img src="img/icon-01.png" /></th>
-                    <td>
-                      <p><span>78920</span></p>
-                      <p>服务总人数</p>
-                    </td>
-                    <th><img src="img/icon-02.png" /></th>
-                    <td>
-                      <p><span>5000</span></p>
-                      <p>空闲服务人数</p>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="xpanel-wrapper xpanel-wrapper-50">
+          <div class="xpanel-wrapper xpanel-wrapper-55">
             <div class="xpanel xpanel-r-b">
               <div class="title">设备数据</div>
               <div id="equipment" class="equipment"></div>
             </div>
           </div>
         </div>
+      </div>
+      </div>
+    </div>
+    <div id="demo2">
+      <div class="header">
+      <h1 class="header-title">
+        <img src="./img/坚式3.png" alt="" class="headerImg">
+        智慧养老云平台
+      </h1>
+      </div>
+      <div class="wrapper">
+      <div class="content">
+        <div class="col col-l">
+          <div class="xpanel-wrapper xpanel-wrapper-45">
+            <div class="xpanel xpanel-l-t">
+              <div class="title">性别比列</div>
+              <div id="sexRatio" class="sexRatio"></div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-55">
+            <div class="xpanel xpanel-l-b">
+              <div class="title">年龄分布</div>
+              <div id="ageDistribution" class="AgeDistribution"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-c">
+          <div class="xpanel-wrapper xpanel-wrapper-65 rollingTop">
+            <div class="xpanel-rolling xpanel-c-b">
+              <ul class="rollingView" id="rollingView">
+                <li v-for="(item,index) in peopleInfo" :key="index">
+                  <div class="rollingView_img">
+                    <img src="./img/人物1.png" alt="" height="100%">
+                  </div>
+                  <div class="rollingView_info">
+                    <div class="rollingView_cell">
+                      <span>姓名：{{item.name}}</span>
+                      <span>性别：{{item.sex}}</span>
+                      <span>年龄：{{item.age}}</span>
+                      <span>入住时间：{{item.date}}</span>
+                    </div>
+                    <div class="rollingView_cell">
+                      <span>
+                        <img src="./img/心率.png" alt="" height="20px" style="vertical-align: bottom">
+                        83
+                      </span>
+                      <span>
+                        <img src="./img/水滴.png" alt="" height="24px" style="vertical-align: bottom">
+                        86
+                      </span>
+                      <span>
+                        <img src="./img/KHCFDC_下线.png" alt="" height="24px" style="vertical-align: bottom">
+                        74
+                      </span>
+                      <span>
+                        <img src="./img/KHCFDC_上线.png" alt="" height="24px" style="vertical-align: bottom">
+                        123
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-35">
+            <div class="xpanel xpanel-c-b">
+              <div class="title title-long">
+                总人数
+                <select class="selectYear" value="2021">
+                  <option v-for="(item,index) in yearList" 
+                          :key="index"
+                          class="optionYear"
+                          :selected="item.value === '2021'"
+                          :value="item.value">{{item.label}}</option>
+                </select>
+              </div>
+              <div id="totalNumber" class="totalNumber"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-r">
+          <div class="xpanel-wrapper xpanel-wrapper-50">
+            <div class="xpanel xpanel-r-t">
+              <div class="title">患病占比</div>
+              <div id="illType" class="illType"></div>
+              <div class="peopleNum">
+                <table class="data-t">
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-50">
+            <div class="xpanel xpanel-r-b">
+              <div class="title">用药占比</div>
+              <div id="bottleType" class="bottleType"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div id="demo3">
+      <div class="header">
+      <h1 class="header-title">
+        <img src="./img/坚式3.png" alt="" class="headerImg">
+        智慧养老云平台
+      </h1>
+      </div>
+      <div class="wrapper">
+      
+      
+      <div class="monitoring">
+        <div class="col col-t">
+          <div class="xpanel-monitoring-30" id="monitoringTL"></div>
+          <div class="xpanel-monitoring-70" id="monitoringTR">
+            <div class="monitoringCard">
+              <div class="monitoringCard1">
+                <span class="monitoringNum">231</span>
+                <span>已接听</span>
+              </div>
+              <div class="monitoringCard2">
+                <span class="monitoringNum">12</span>
+                <span>未接听</span>
+              </div>
+              <div class="monitoringCard3">
+                <span class="monitoringNum">10</span>
+                <span>投诉</span>
+              </div>
+            </div>
+            <div class="connectionRate" id="connectionRate">
+
+            </div>
+            <div class="satisfaction" id="satisfaction">
+
+            </div>
+          </div>
+        </div>
+        <div class="col col-b" id="monitoringB">
+          <div class="xpanel-monitoring-20" id="monitoringBL">
+            <img src="./img/24小时售后.png" alt="">
+            <div>24小时呼叫记录</div>
+          </div>
+          <div class="xpanel-monitoring-80" id="monitoringBR"></div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div id="demo4">
+      <div class="header">
+      <h1 class="header-title">
+        <img src="./img/坚式3.png" alt="" class="headerImg">
+        智慧养老云平台
+      </h1>
+      </div>
+      <div class="wrapper">
+      <div class="content">
+        <div class="col col-l">
+          <div class="xpanel-wrapper xpanel-wrapper-45">
+            <div class="xpanel xpanel-l-t">
+              <div class="title">活动室使用
+                <select class="selectYear" value="2021">
+                  <option v-for="(item,index) in yearList" 
+                          :key="index"
+                          class="optionYear"
+                          :selected="item.value === '2021'"
+                          :value="item.value">{{item.label}}</option>
+                </select>
+              </div>
+              <div id="playroom1" class="playroom"></div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-55">
+            <div class="xpanel xpanel-l-b">
+              <div class="title">服务数据</div>
+              <div id="service1" class="service"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-c">
+          <div class="xpanel-wrapper xpanel-wrapper-65">
+            <div class="xpanel no-bg" id="flyMap1">
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-35">
+            <div class="xpanel xpanel-c-b">
+              <div class="title title-long">
+                工单数据
+                <select class="selectYear" value="2021">
+                  <option v-for="(item,index) in yearList" 
+                          :key="index"
+                          class="optionYear"
+                          :selected="item.value === '2021'"
+                          :value="item.value">{{item.label}}</option>
+                </select>
+              </div>
+              <div id="workInstruction1" class="workInstruction"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-r">
+          <div class="xpanel-wrapper xpanel-wrapper-45">
+            <div class="xpanel xpanel-r-t">
+              <div class="title">入住情况</div>
+              <div id="checkIn1" class="checkIn"></div>
+              <div class="peopleNum">
+                <table class="data-t">
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="xpanel-wrapper xpanel-wrapper-55">
+            <div class="xpanel xpanel-r-b">
+              <div class="title">设备数据</div>
+              <div id="equipment1" class="equipment"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -149,6 +342,158 @@
               label: '2021年',
               value: '2021'
             }
+          ],
+          peopleInfo: [
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安1',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安2',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安3',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安4',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
+            {
+              name: '刘安5',
+              sex: '男',
+              age: '63',
+              date: '2019-03-10',
+              heartRate: '83',
+              glucose: '86',
+              lowBlood: '78',
+              highBlood: '134'
+            },
           ]
         }
       },
